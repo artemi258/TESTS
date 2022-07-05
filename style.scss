@@ -1,0 +1,35 @@
+@import './test.scss' ;
+
+.main {
+    margin: 0 auto;
+    width: 1000px;
+    background-color: darkblue;
+    color: black;
+    &__sub {
+        width: 100px;
+        height: 100px;
+        background-color: burlywood;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Roboto','serif';
+    }
+}
+img {
+    width: 100px;
+    height: 100px;
+}
+
+// @font-face {
+//     font-family: "Roboto";
+//     font-style: normal;
+//     font-weight: 400;
+//     /* Браузер сначала попробует найти шрифт локально */
+//     src: local("Roboto"),
+//          url("./fonts/Robotomono.ttf") format("ttf"),
+//          /* Если не получилось, загрузит woff2 */
+//          url("./fonts/Robotomono.woff2") format("woff2"),
+//          /* Если браузер не поддерживает woff2, загрузит woff */
+//          url("./fonts/Robotomono.woff") format("woff");
+//   }

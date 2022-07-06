@@ -16,7 +16,7 @@
   \******************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ \"./style.scss\");\n\r\nconst main = document.querySelector('.main');\r\n\r\ndocument.body.appendChild(main)\n\n//# sourceURL=webpack://typescript/./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ \"./style.scss\");\n\r\n// import {pizza} from './JSON/product.json';\r\n\r\nconst main = document.querySelector('.main');\r\nconst form = document.querySelector('form');\r\n\r\ndocument.body.appendChild(main)\r\n// console.log(pizza);\r\n\r\n// form.addEventListener('submit', async (e) => {\r\n// e.preventDefault();\r\n//     const submit = await fetch('./JSON/product.json');\r\n//    const data = await submit.json()\r\n//    console.log( data)\r\n//    data\r\n//    .then(res => console.log(res))\r\n// //    data.then(data => console.log(data))\r\n// //    .catch(data => console.log(data))\r\n// })\r\n\r\n\r\nconst fet = async (url) => {\r\n    const submit = await fetch(url);\r\n    const data = await submit.json();\r\n    console.log(data)\r\n    data.then(res => console.log(res))\r\n    return data;\r\n}\r\n\r\nform.addEventListener('submit', (e) => {\r\ne.preventDefault();\r\n    fet('./JSON/product.json')\r\n    .then(res => console.log('not ERROR',res))\r\n    .catch(data => console.log('error', data));\r\n//   \r\n//    console.log( data)\r\n})\r\n\n\n//# sourceURL=webpack://typescript/./index.js?");
 
 /***/ }),
 

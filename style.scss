@@ -21,15 +21,15 @@ img {
     height: 100px;
 }
 
-// @font-face {
-//     font-family: "Roboto";
-//     font-style: normal;
-//     font-weight: 400;
-//     /* Браузер сначала попробует найти шрифт локально */
-//     src: local("Roboto"),
-//          url("./fonts/Robotomono.ttf") format("ttf"),
-//          /* Если не получилось, загрузит woff2 */
-//          url("./fonts/Robotomono.woff2") format("woff2"),
-//          /* Если браузер не поддерживает woff2, загрузит woff */
-//          url("./fonts/Robotomono.woff") format("woff");
-//   }
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    /* Браузер сначала попробует найти шрифт локально */
+    src: local("Roboto"),
+         url("./fonts/Robotomono.ttf") format("ttf"),
+         /* Если не получилось, загрузит woff2 */
+         url("./fonts/Robotomono.woff2") format("woff2"),
+         /* Если браузер не поддерживает woff2, загрузит woff */
+         url("./fonts/Robotomono.woff") format("woff");
+  }

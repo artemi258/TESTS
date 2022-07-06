@@ -2,8 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const sass = require("sass");
-
 
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -19,17 +17,13 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', {
-                  loader: "sass-loader",
-                  options: {
-                    sourceMap: true,
-                  }}],
+                use: [MiniCssExtractPlugin.loader, 
+                  { 
+                    loader: 'css-loader', 
+                    options: { url: false } 
+                }, 
+                'sass-loader'],
             },
-            // {
-            //   test: /\.(png|svg|jpg|jpeg|gif)$/,
-            //   type: 'asset',
-            //   type: 'javascript/auto'
-            // },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/,
                 type: 'asset/resource',
@@ -46,6 +40,14 @@ module.exports = {
                 filename: '[name][ext]'
               }
             },
+            {
+              test: /\.json$/,
+              type: 'asset/resource',
+              generator: {
+                  outputPath: 'JSON/',
+                  filename: '[name][ext]'
+                }
+          },
         ]
     },
     plugins: [

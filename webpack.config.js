@@ -1,7 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -11,7 +12,8 @@ module.exports = {
     entry: './index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        clean: true
     },
     module: {
         rules: [
@@ -23,40 +25,32 @@ module.exports = {
                     options: { url: false } 
                 }, 
                 'sass-loader'],
-            },
-            {
-                test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
-                type: 'asset/resource',
-                generator: {
-                    outputPath: 'images/',
-                    filename: '[name][ext]'
-                  }
-            },
-            {
-              test: /\.(woff|woff2|eot|ttf|otf)$/i,
-              type: 'asset/resource',
-              generator: {
-                outputPath: 'fonts/',
-                filename: '[name][ext]'
-              }
-            },
-            {
-              test: /\.json$/,
-              type: 'asset/resource',
-              generator: {
-                  outputPath: 'JSON/',
-                  filename: '[name][ext]'
-                }
-          },
+            }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template:  path.resolve(__dirname, 'index.html'),
+            template: path.resolve(__dirname, 'index.html'),
             inject: 'body',
             scriptLoading: 'blocking'
         }),
-        new MiniCssExtractPlugin()
+        new MiniCssExtractPlugin(),
+        new CopyWebpackPlugin({
+              patterns: [
+                {
+                  from: './images/*.+(png|svg|jpg|jpeg|gif|ico)',
+                  to: path.resolve(__dirname, 'dist')
+                },
+                {
+                  from: 'JSON/*.json',
+                  to: path.resolve(__dirname, 'dist')
+                },
+                {
+                  from: './fonts/*.+(woff|woff2|eot|ttf|otf)',
+                  to: path.resolve(__dirname, 'dist')
+                }
+              ]
+            })
     ],
     optimization: {
         minimizer: [

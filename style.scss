@@ -3,12 +3,12 @@
 .main {
     margin: 0 auto;
     width: 1000px;
-    background-color: darkblue;
+    background-color: rgb(17, 17, 204);
     color: black;
     &__sub {
         width: 100px;
         height: 100px;
-        background-color: burlywood;
+        background-color: rgb(164, 148, 126);
         margin: 0 auto;
         display: flex;
         justify-content: center;

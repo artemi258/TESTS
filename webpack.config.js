@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const { extendDefaultPlugins } = require("svgo");
+
 
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -14,6 +17,11 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         clean: true
+    },
+    devServer: {
+      port: 3000,
+      open: true,
+      hot: true,
     },
     module: {
         rules: [
@@ -53,10 +61,28 @@ module.exports = {
             })
     ],
     optimization: {
-        minimizer: [
-          new CssMinimizerPlugin({
-            test: /.css$/,
-          }),
-        ],
-      },
+      minimizer: [
+        new CssMinimizerPlugin({
+          test: /.css$/,
+        }),
+        new ImageMinimizerPlugin({
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          minimizer: {
+            implementation: ImageMinimizerPlugin.imageminMinify,
+            options: {
+              plugins: [
+                "imagemin-gifsicle",
+                "imagemin-mozjpeg",
+                "imagemin-optipng",
+                "imagemin-svgo",
+              ],
+            },
+          },
+          // Disable `loader`
+          loader: false,
+        }),
+      ],
+    },
 }
+
+

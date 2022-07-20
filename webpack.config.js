@@ -5,6 +5,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const { extendDefaultPlugins } = require("svgo");
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 
 
@@ -22,6 +23,9 @@ module.exports = {
       port: 3000,
       open: true,
       hot: true,
+      static: {
+        directory: path.join(__dirname, 'dist')
+      },
     },
     module: {
         rules: [
@@ -40,7 +44,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'index.html'),
             inject: 'body',
-            scriptLoading: 'blocking'
+            scriptLoading: 'blocking',
+            alwaysWriteToDisk: true
+        }),
+        new HtmlWebpackHarddiskPlugin({
+          outputPath: path.resolve(__dirname, 'dist')
         }),
         new MiniCssExtractPlugin(),
         new CopyWebpackPlugin({

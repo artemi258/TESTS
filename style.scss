@@ -1,10 +1,16 @@
 @import './test.scss' ;
 
+:root {
+    --red: rgb(200, 203, 37);
+}
+body {
+    background-color:rgb(100, 100, 155);
+}
 .main {
     margin: 0 auto;
     width: 1000px;
-    background-color: rgb(17, 17, 204);
-    color: black;
+    background-color: var(--red);
+    color: rgb(255, 0, 0);
     &__sub {
         width: 100px;
         height: 100px;

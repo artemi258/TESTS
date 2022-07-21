@@ -1,0 +1,48 @@
+.clone {
+    align-items: center;
+    background-image: url(images/facebook.png);
+    display: flex;
+    font-family: Roboto;
+    height: 200px;
+    justify-content: center;
+    margin: 0 auto;
+    width: 200px
+}
+
+:root {
+    --red: green
+}
+
+body {
+    background-color: #ece1d1
+}
+
+.main {
+    background-color: green;
+    background-color: var(--red);
+    color: red;
+    margin: 0 auto;
+    width: 1000px
+}
+
+.main__sub {
+    align-items: center;
+    background-color: #a4947e;
+    display: flex;
+    font-family: Roboto, "serif";
+    justify-content: center;
+    margin: 0 auto
+}
+
+.main__sub,
+img {
+    height: 100px;
+    width: 100px
+}
+
+@font-face {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: local("Roboto"), url(fonts/Robotomono.ttf) format("ttf"), url(fonts/Robotomono.woff2) format("woff2"), url(fonts/Robotomono.woff) format("woff")
+}

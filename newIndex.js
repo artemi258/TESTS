@@ -2,6 +2,6 @@
 const newButton = document.querySelector('.new');
 
 newButton.addEventListener('click', () => {
-    console.log('hello');
+    console.log('hello USER');
 
 })

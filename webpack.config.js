@@ -34,8 +34,20 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, 
                   { 
                     loader: 'css-loader', 
-                    options: { url: false } 
-                }, 
+                    options: { url: false }
+                },
+                {
+                  loader: "postcss-loader",
+                  options: {
+                    postcssOptions: {
+                      plugins: [
+                        [
+                          "postcss-preset-env"
+                        ],
+                      ],
+                    },
+                  },
+                },
                 'sass-loader'],
             }
         ]
@@ -50,7 +62,9 @@ module.exports = {
         new HtmlWebpackHarddiskPlugin({
           outputPath: path.resolve(__dirname, 'dist')
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+          filename: "[name].min.css",
+        }),
         new CopyWebpackPlugin({
               patterns: [
                 {
@@ -72,6 +86,14 @@ module.exports = {
       minimizer: [
         new CssMinimizerPlugin({
           test: /.css$/,
+          minimizerOptions: {
+            preset: [
+              "default",
+              {
+                discardComments: { removeAll: true },
+              },
+            ],
+          } 
         }),
         new ImageMinimizerPlugin({
           test: /\.(jpe?g|png|gif|svg)$/i,

@@ -7,8 +7,6 @@ const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const { extendDefaultPlugins } = require("svgo");
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
-
-
 const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
@@ -49,6 +47,19 @@ module.exports = {
                   },
                 },
                 'sass-loader'],
+            },
+            {
+              test: /\.m?js$/,
+              exclude: /(node_modules|bower_components)/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: [['@babel/preset-env', {
+                    corejs: 3,
+                    useBuiltIns: "usage"
+                }]]
+                }
+              }
             }
         ]
     },
